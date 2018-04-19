@@ -1,0 +1,16 @@
+在SRC在建立db.properties,用来存储JDBC驱动、数据库URL、用户名、密码、包名、SRC路径
+数据库的每张表只有一个主键
+po尽量使用包装类，不要使用基本数据类型
+在MySQLQuery类中实现增删改查的操作，继承Query类
+在configuration类中封装配置文件的属性，因为配置文件可以通过键值对来
+在DBManager的类中加载配置文件，如果需要添加配置文件的信息，需要在该类中添加配置文件，通过property获取配置文件的信息
+Callback方法是回调方法，在Query类中可见，更具用户的需求实现更复杂的查询，即是一个接口
+TableContext类是查询数据库中的表名、该表下的字段名、字段的值，根据表名将其转化为Java类的类名，根据字段名将其转为话Java类的属性等
+TypeConvertor是将数据库的字段的类型名转化为Java的类型名，比如varchar转化为String
+
+在TableContext类中，利用类DatabaseMetaData获取数据库的全部信息，此时就已初始化ColumnInfo的对象和属性值，以及初始化TableInfo的对象和属性值
+JavaFileUtils类通过ColumnInfo和TableInfo的类对象，就可以生成相应的Javabean的类文件
+
+//在不添加连接池的情况下，进行数据库查询10000次所需要的时间:25秒
+//在使用连接池的情况下，进行数据库查询10000次所需要的时间:5秒
+	
